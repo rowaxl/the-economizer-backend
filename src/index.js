@@ -10,7 +10,7 @@ const keys = require('./keys');
 const app = express();
 
 const CORS_ALLOWED_ORIGINS = process.env['NODE_ENV'] === 'production' ?
-  ['https://the-economizer.vercel.app/'] :
+  ['https://the-economizer.vercel.app'] :
   ['http://localhost:3000']
 
 app.use(cors({
