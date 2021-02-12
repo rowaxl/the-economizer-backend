@@ -16,8 +16,6 @@ module.exports = {
 
     const plans = await Plans.find({ userID })
 
-    console.log({ plans })
-
     res.status(200).send(plans)
   },
   createPlan: async (req, res) => {

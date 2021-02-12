@@ -12,8 +12,6 @@ module.exports = async (req, res, next) => {
   const cert = process.env.AUTH_SECRET
   const decoded = jwt.decode(token, cert, { algorithm: 'HS256' })
 
-  console.log({ decoded })
-
   const { email, name, image, exp } = decoded
 
   if (Date.now() > exp * 1000) {
@@ -28,8 +26,6 @@ module.exports = async (req, res, next) => {
   }
 
   req.user = user
-
-  console.log(req.user)
 
   next();
 }
