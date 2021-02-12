@@ -9,8 +9,8 @@ const keys = require('./keys');
 
 const app = express();
 
-const CORS_ALLOWED_ORIGINS = process.env['env'] === 'production' ?
-  ['https://economizer.vercel.app'] :
+const CORS_ALLOWED_ORIGINS = process.env['NODE_ENV'] === 'production' ?
+  ['https://the-economizer.vercel.app/'] :
   ['http://localhost:3000']
 
 app.use(cors({
@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router)
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env['NODE_ENV'] === 'production' ? process.env.PORT : 5000;
 
 app.listen(PORT, async () => {
   console.log(`Server has started running on port: ${PORT}`)
