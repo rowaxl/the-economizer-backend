@@ -30,7 +30,8 @@ app.listen(PORT, async () => {
 
   const db = await mongoose.connect(keys.DB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
   })
 
   if (!db) {
