@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const morgan = require('morgan')
 const cors = require('cors')
 require('dotenv').config()
 
@@ -15,8 +16,11 @@ const CORS_ALLOWED_ORIGINS = process.env['NODE_ENV'] === 'production' ?
 
 app.use(cors({
   origin: CORS_ALLOWED_ORIGINS,
-  allowedHeaders: ['Access-Control-Allow-Origin', 'access-token', 'Origin, X-Requested-With', 'Content-Type', 'Accept']
+  allowedHeaders: ['Access-Control-Allow-Origin', 'access-token', 'Origin, X-Requested-With', 'Content-Type', 'Accept'],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
 }))
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
